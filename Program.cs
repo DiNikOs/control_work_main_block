@@ -1,5 +1,4 @@
-﻿
-class UserInputToCompile
+﻿class UserInputToCompile
 {
     static string ERROR = "Ни одного значениия нет меньше 4х символов!";
     static string END_TEXT = "Завершение программы!";
@@ -12,7 +11,7 @@ class UserInputToCompile
 
         return string[] arrNew - массив с длиной строки меньше 4х
     */
-    public static string[] ArrayToString3size(string[] array, int maxLenSymbol)
+    public static string[] arrayToString3size(string[] array, int maxLenSymbol)
     {
         Console.WriteLine($"Исходный массив: [{string.Join(", ", array)}]");
         int sizeNewArr = 0;
@@ -77,5 +76,25 @@ class UserInputToCompile
         return;
 
     }
+}
 
+class Answer
+{
+    static int SIZE = 3;
+    public static void Main(string[] args)
+    {
+        Console.Clear();
+        string[] array = new string[0];
+
+
+        if (args.Length >= 1)
+        {
+            // Объединяем все аргументы командной строки в одну строку
+            string joinedArgs = string.Join(", ", args);
+
+            // Разделяем строку по запятой с пробелом и преобразуем в массив строк
+            array = joinedArgs.Split(", ");
+        }
+        UserInputToCompile.PrintResult(array, SIZE);
+    }
 }
