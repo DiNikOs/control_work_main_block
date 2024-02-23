@@ -1,6 +1,8 @@
 ﻿
 class UserInputToCompile
 {
+    static string ERROR = "Ни одного значениия нет меньше 4х символов!";
+    static string END_TEXT = "Завершение программы!";
 
     /**
         Возвращаем массив строк из 3х символов
@@ -10,7 +12,7 @@ class UserInputToCompile
 
         return string[] arrNew - массив с длиной строки меньше 4х
     */
-    public static string[] arrayToString3size(string[] array, int maxLenSymbol)
+    public static string[] ArrayToString3size(string[] array, int maxLenSymbol)
     {
         Console.WriteLine($"Исходный массив: [{string.Join(", ", array)}]");
         int sizeNewArr = 0;
@@ -35,5 +37,45 @@ class UserInputToCompile
         }
         return arrNew;
     }
- 
+
+    public static void PrintResult(string[] array, int size)
+    {
+        if (array.Length != 0)
+        {
+            // вывод ответа
+            Console.WriteLine($"Результат: [{string.Join(", ", arrayToString3size(array, size))}]");
+            Console.WriteLine(END_TEXT);
+            return;
+        }
+
+        string r = "";
+        while (r != "q" || r != "x")
+        {
+            Console.Write("Введите символы через запятую (выход - x/q): ");
+            r = Console.ReadLine();
+            Console.Clear();
+            if (r == "q" || r == "x")
+            {
+                Console.WriteLine(END_TEXT);
+                return;
+            }
+            if (r == ",")
+            {
+                Console.WriteLine(ERROR);
+                continue;
+            }
+            array = r.Split(",");
+            string[] arrNew = arrayToString3size(array, size);
+            if (arrNew.Length == 0)
+            {
+                Console.WriteLine(ERROR);
+                continue;
+            }
+            Console.WriteLine($"Результат: [{string.Join(", ", arrNew)}]");
+        }
+        Console.WriteLine(END_TEXT);
+        return;
+
+    }
+
 }
